@@ -6,7 +6,7 @@ sitemap:
   priority: 0.9
 ---
 
-<img src="{{ '/assets/img/dp2.jpg' | prepend: site.baseurl }}" id="about-img">
+<img src="{{ '/assets/img/dp.jpeg' | prepend: site.baseurl }}" id="about-img">
 
 <div id="describe-text">
     <p>Area of Interest- Distributed Ledger Technologies & Web Technologies</p>
