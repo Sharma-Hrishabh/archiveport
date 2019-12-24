@@ -6,7 +6,7 @@ sitemap:
   priority: 0.9
 ---
 
-<img src="{{ '/assets/img/dp.jpeg' | prepend: site.baseurl }}" id="about-img">
+<img src="http://www.cevgroup.org/wp-content/uploads/2019/04/Webp.net-resizeimage.png" id="about-img">
 
 <div id="describe-text">
     <p>Area of Interest- Distributed Ledger Technologies & Web Technologies</p>
