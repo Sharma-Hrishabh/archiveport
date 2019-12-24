@@ -1,0 +1,111 @@
+I"�<p><img src="//assets/img/dp2.jpg" id="about-img" /></p>
+
+<div id="describe-text">
+    <p>My current areas of interest are distributed systems, cloud computing, computer networks.</p>
+	<p><strong><a target="_blank" href="https://scholar.google.co.in/citations?user=5kBZSVkAAAAJ&amp;hl=en">Google Scholar</a> | <a target="_blank" href="https://dblp.uni-trier.de/pers/hd/g/Ghosh:Bishakh_Chandra">DBLP</a> | <a target="_blank" href="https://github.com/ghoshbishakh">GitHub</a></strong></p>
+</div>
+
+<p><span style="float: right; "><a href="//assets/resume.pdf"><strong>&gt; Download as PDF</strong></a> </span>
+<br /></p>
+
+<h3 id="education">EDUCATION</h3>
+
+<p><strong>National Institute of Technology Surat</strong> <span style="float: right; ">2017 - Present</span></p>
+
+<p>B.Technology 
+Department of Computer Engineering</p>
+<hr />
+
+<p><strong>Senior Secondary School</strong> <span style="float: right; ">2016-2017</span><br />
+Saiyyid Hamid Senior Secondary School <span style="float: right; ">93.8%</span></p>
+
+<hr />
+
+<p><strong>Secondary School</strong> <span style="float: right; ">2015-2015</span></p>
+
+<p>A.M.U City High School <span style="float: right; ">89.00%</span></p>
+
+<p><br /></p>
+
+<h3 id="publications">PUBLICATIONS</h3>
+
+<p><strong>Journal of Network and Computer Applications</strong> - P. S. Paul, Bishakh Chandra Ghosh, Hridoy Datta, Kingshuk De, Arka Prava Basu, Prithviraj Pramanik, Sujoy Saha, Sandip Chakraborty, Niloy Ganguly, Subrata Nandi <em><a href="https://doi.org/10.1016/j.jnca.2019.102418">CRIMP: Here crisis mapping goes offline</a></em></p>
+<hr />
+
+<p><strong>IEEE CLOUD 2019</strong> - Sourav Kanti Addya, Anurag Satpathy, Bishakh Chandra Ghosh, Sandip Chakraborty and Soumya K. Ghosh <em><a href="https://ieeexplore.ieee.org/document/8814578"> Power and Time aware VM Migration for Multi-tier Applications over Geo-distributed Clouds</a></em></p>
+<hr />
+
+<p><strong>IEEE SCC 2019</strong> - Bishakh Chandra Ghosh, Sourav Kanti Addya, Anurag Satpathy, Soumya K. Ghosh and Sandip Chakraborty <em><a href="https://ieeexplore.ieee.org/document/8813913">Towards a Democratic Federation for Infrastructure Service Provisioning</a></em>  | <a href="/assets/CloudChain.pdf">PDF</a> | <a href="/assets/CloudChainPPT.pdf">Presentation</a></p>
+<hr />
+
+<p><strong>COMSNETS 2016</strong> - Partha Sarathi Paul, Bishakh Chandra Ghosh, Kingshuk De, Sujoy Saha, Subrata Nandi, Indrajit Bhattacharya and Sandip Chakraborty.  <em><a href="https://doi.org/10.1109/COMSNETS.2016.7439949">On design and implementation of a scalable and reliable Sync system for delay tolerant challenged networks</a></em></p>
+<hr />
+
+<p><strong>ACM SIGSPATIAL Workshop - EM-GIS 2016</strong> - Partha Sarathi Paul, Hridoy Sankar Dutta, Bishakh Chandra Ghosh, Krishnandu Hazra, Sandip Chakraborty, Sujoy Saha, Subrata Nandi. <em><a href="https://doi.org/10.1145/3017611.3017620">Offline crisis mapping by opportunistic dissemination of crisis data after large-scale disasters</a></em></p>
+<hr />
+
+<p><strong>ACM CHANTS</strong> - Partha Sarathi Paul, Bishakh Chandra Ghosh, Kingshuk De, Sujoy Saha, Subrata Nandi, and Sandip  Chakraborty. <em><a href="https://doi.org/10.1145/2799371.2799375">Demo: pSync: A Peer-to-peer Sync Tool for Challenged Networks.</a></em></p>
+<hr />
+
+<p><strong>ICDCN 19 Workshops - EmeRTeS</strong> - Partha Sarathi Paul, Chandrika Mukherjee, Bishakh Chandra Ghosh, Sudipta Pandit, Sujoy Saha, Subrata Nandi <em><a href="https://dl.acm.org/citation.cfm?id=3295592">On Designing a Fast-Deployable ‘Localized’ GIS Platform for using ‘Offline’ during Post-Disaster Situation</a></em></p>
+<hr />
+
+<h3 id="experience">EXPERIENCE</h3>
+<p><strong>Teaching Assistant</strong> -  <span style="float: right; ">IIT Kharagpur</span>
+Networks Lab (Spring 2019)
+ Advances in Operating Systems Design (Autumn 2019)</p>
+
+<hr />
+
+<p><strong>Cityprobe Project NIT Durgapur</strong> - Project Student Associate <span style="float: right; ">Dec 2017 - May 2018</span>
+Opportunistic data dissemination through challenged networks</p>
+<hr />
+
+<p><strong>MAQ Software</strong> - Software Intern <span style="float: right; ">May 2017 - Jun 2017</span>
+Design and implement Microsoft Returns Dashboard using TSQL, ASP, and Power BI.</p>
+<hr />
+
+<p><strong>Google Summer of Code</strong> - Python Software Foundation <span style="float: right; ">May 2016 - Aug 2016</span>
+Custom content management system using Django and content aggregation system for automatic inte-
+gration of documentation of Dipy in the Dipy webite.</p>
+<hr />
+
+<p><strong>DISARM project NIT Durgapur</strong></p>
+
+<p>Winter Intern <span style="float: right; ">2015-16</span></p>
+
+<p>Port pSync to Java and integrate it with an Android app.</p>
+
+<p>Summer Intern <span style="float: right; ">2015-16</span></p>
+
+<p>Implementation of congestion control protocols in pSync</p>
+
+<p>Winter Intern <span style="float: right; ">2014-15</span></p>
+
+<p>Design and implementation of a peer to peer sync tool in python pSync.</p>
+
+<p><br /></p>
+
+<!-- ### PROJECTS
+**Title** - Description - Place <span style="float: right; ">Time span</span>  
+Pellentesque euismod odio nec mollis rutrum. Nulla facilisi. In hac habitasse platea dictumst. Etiam facilisis velit velit, id dapibus lacus bibendum nec. Proin euismod tortor non nunc luctus, ut varius mauris tristique.  
+
+**Title** - Description - Place <span style="float: right; ">Time span</span>  
+Pellentesque euismod odio nec mollis rutrum. Nulla facilisi. In hac habitasse platea dictumst. Etiam facilisis velit velit, id dapibus lacus bibendum nec. Proin euismod tortor non nunc luctus, ut varius mauris tristique.  
+
+**Title** - Description - Place <span style="float: right; ">Time span</span>  
+Pellentesque euismod odio nec mollis rutrum. Nulla facilisi. In hac habitasse platea dictumst. Etiam facilisis velit velit, id dapibus lacus bibendum nec. Proin euismod tortor non nunc luctus, ut varius mauris tristique.  
+ -->
+
+<h3 id="achievements">ACHIEVEMENTS</h3>
+
+<ul>
+  <li>Received Microsoft Travel Grant for attending IEEE SCC 2019</li>
+  <li>First runners up in Smart India Hackathon 2017 under ministry of AICTE</li>
+  <li>Spot Award winner at MAQ Software for good performance and fast delivery</li>
+  <li>Completed Google Summer of Code 2016</li>
+  <li>Won winter intern award for remarkable performance (winter 2014-15) at project DISARM, NIT Durgapur</li>
+  <li>First Position obtained at Socket Combat event, at Technoshine 2014, NIT Durgapur by implementing a multicast chat program.</li>
+  <li>Led a 3-tier team of 50 people as Technical Head, GNU Linux Users’ Group</li>
+</ul>
+:ET

@@ -1,69 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-55274012-1');
-</script>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Hrishabh Sharma — NIT Surat  | Hrishabh Sharma</title>
-<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
-">
-
-<link rel="canonical" href="//">
-<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
-<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
-<link rel="stylesheet" href="/../assets/css/main.css">
-
-<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
-
-<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
-<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-</head>
-<body>
-<div class="wrapper">
-<header class="header">
-<div class="navigation">
-<a href="//" class="logo">Hrishabh Sharma</a>
-<ul class="menu">
-<li class="menu__entry"><a href="//blog">Blog</a></li>
-</ul>
-</div>
-<ul class="social-links">
-
-<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
-<i class="fa fa-envelope-square"></i>
-</a>
-
-
-<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
-<i class="fa fa-github"></i>
-</a>
-
-
-<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
-<i class="fa fa-linkedin"></i>
-</a>
-
-</ul>
-</header>
-<h1 class="page-title">
-<div class="page-title__text">Hrishabh Sharma</div>
-<div class="page-title__subtitle">NIT Surat</div>
-</h1>
-
-<p><img src="//assets/img/dp2.jpg" id="about-img" /></p>
+I")<p><img src="//assets/img/dp2.jpg" id="about-img" /></p>
 
 <div id="describe-text">
     <p>Area of Interest- Distributed Ledger Technologies &amp; Web Technologies</p>
+	<p><strong><a target="_blank" href="https://scholar.google.co.in/citations?user=5kBZSVkAAAAJ&amp;hl=en">Google Scholar</a> | <a target="_blank" href="https://dblp.uni-trier.de/pers/hd/g/Ghosh:Bishakh_Chandra">DBLP</a> | <a target="_blank" href="https://github.com/ghoshbishakh">GitHub</a></strong></p>
 </div>
 
 <p><span style="float: right; "><a href="//assets/resume.pdf"><strong>&gt; Download as PDF</strong></a> </span>
@@ -123,17 +62,4 @@ Topic: Blockchain Technology</p>
   <li>IBM Blockchain Essentials Badge Holder issued by IBM <a href="https://www.youracclaim.com/badges/29223042-1da6-41ab-9098-face7b39f2cb/public_url">(Link)</a></li>
 </ul>
 
-
-
-<div class="about">
-<div class="about__devider">*****</div>
-<div class="about__text">
-<br>Courtesy ☕ Pudhina theme by Knhash 🛠️
-</div>
-</div>
-
-</div>
-<script src="//assets/vendor/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-</body>
-</html>
+:ET
