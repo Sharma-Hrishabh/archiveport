@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55274012-1');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Getting Started With Hyperledger Fabric in Ubuntu 18.04 —   | Hrishabh Sharma</title>
+<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
+">
+<meta name="keywords" content="guides, linux">
+<link rel="canonical" href="//blogpost/2018/07/27/getting-started-with-hyperledger-fabric-in-ubuntu-18.04.html">
+<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/../assets/css/main.css">
+
+<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="//" class="logo">Hrishabh Sharma</a>
+<ul class="menu">
+<li class="menu__entry"><a href="//blog">Blog</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-linkedin"></i>
+</a>
+
+</ul>
+</header>
+
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Getting Started With Hyperledger Fabric in Ubuntu 18.04</h1>
+    <p class="post-meta"><time datetime="2018-07-27T21:00:14+05:30" itemprop="datePublished">Jul 27, 2018</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>In this post I will give you clear steps that you can follow to get started with <a href="https://hyperledger-fabric.readthedocs.io">Hyperledger Fabric</a> quickly in Ubuntu 18.04.</p>
+
+<!--more-->
+
+<h2 id="install-prerequisites">Install prerequisites</h2>
+<p>First.. we need to install some prerequisites: curl, git, docker, docker-compose, golang, nodejs, npm</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get <span class="nb">install </span>curl
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>git
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>docker
+docker <span class="nt">--version</span>    <span class="c"># just to ckeck if it is installed correctly</span>
+<span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> docker <span class="nv">$USER</span>
+<span class="nb">sudo </span>systemctl start docker
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker
+
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>docker-compose
+docker-compose <span class="nt">--version</span>    <span class="c"># ckeck if it is installed correctly</span>
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>golang
+go version <span class="c"># ckeck if it is installed correctly</span>
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>nodejs
+node <span class="nt">--version</span>
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>npm
+npm <span class="nt">--version</span></code></pre></figure>
+
+<p>[NOTE: you need to logout and login back in order to use docker without superuser rights]</p>
+
+<h2 id="install-samples-and-binaries">Install samples and binaries</h2>
+<p>Now for installing fabric samples and binaries, they provide a simple script to make your life easy also make the process obfuscated so that we need to put some extra effort to understand what is going on underneath. Anyways, we just want to set up our first fabric sample asap so just do the following:</p>
+
+<p>[NOTE: this will take time as the size of the docker images are pretty large.]</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="nt">-sSL</span> http://bit.ly/2ysbOFE | bash <span class="nt">-s</span> 1.2.0</code></pre></figure>
+
+<p>This will clone fabric-samples in you present working directory which we are going to use in the upcoming steps.</p>
+
+<h2 id="building-your-first-network">Building Your First Network</h2>
+<p>We will be running the first-network sample.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>fabric-samples/first-network</code></pre></figure>
+
+<p>Now, we need to generate the certs and genesis blocks. Then start the test network.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./byfn.sh generate
+
+./byfn.sh up</code></pre></figure>
+
+<p>You should see the following upon successful execution:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"> ____    _____      _      ____    _____
+/ ___|  |_   _|    / <span class="se">\ </span>   |  _ <span class="se">\ </span> |_   _|
+<span class="se">\_</span>__ <span class="se">\ </span>   | |     / _ <span class="se">\ </span>  | |_<span class="o">)</span> |   | |
+ ___<span class="o">)</span> |   | |    / ___ <span class="se">\ </span> |  _ &lt;    | |
+|____/    |_|   /_/   <span class="se">\_\ </span>|_| <span class="se">\_\ </span>  |_|
+<span class="nb">.</span>
+<span class="nb">.</span>
+<span class="nb">.</span>
+ _____   _   _   ____
+| ____| | <span class="se">\ </span>| | |  _ <span class="se">\</span>
+|  _|   |  <span class="se">\|</span> | | | | |
+| |___  | |<span class="se">\ </span> | | |_| |
+|_____| |_| <span class="se">\_</span>| |____/</code></pre></figure>
+
+<p>Now bring down the network:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./byfn.sh down</code></pre></figure>
+
+
+  </div>
+
+  <hr>
+
+  <p id="post-meta">Posted with Tags<i class="fa fa-tags"></i>: </p>
+
+  
+  <hr>
+  <!-- DISQUS -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+            this.page.url = "http://ghoshbishakh.disqus.com/blogpost/2018/07/27/getting-started-with-hyperledger-fabric-in-ubuntu-18.04.html";
+            this.page.identifier = "/blogpost/2018/07/27/getting-started-with-hyperledger-fabric -in-ubuntu-18.04";
+        };
+        
+        (function() {
+          var d = document, s = d.createElement('script');
+
+          s.src = '//ghoshbishakh.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <!-- DISQUS END -->
+  
+</article>
+
+</div>
+<script src="//assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

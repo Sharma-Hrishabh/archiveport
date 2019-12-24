@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55274012-1');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Google Summer of Code with Dipy —   | Hrishabh Sharma</title>
+<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
+">
+<meta name="keywords" content="personal, gsoc">
+<link rel="canonical" href="//blogpost/2016/05/16/google-summer-of-code-with-dipy.html">
+<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/../assets/css/main.css">
+
+<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="//" class="logo">Hrishabh Sharma</a>
+<ul class="menu">
+<li class="menu__entry"><a href="//blog">Blog</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-linkedin"></i>
+</a>
+
+</ul>
+</header>
+
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Google Summer of Code with Dipy</h1>
+    <p class="post-meta"><time datetime="2016-05-16T10:36:11+05:30" itemprop="datePublished">May 16, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I know I am a bit late with this blogpost, but as you probably guessed from the title I made it into Google Summer of Code 2016!!<!--more--></p>
+
+<p>Through out this summer I will be working with <a href="http://nipy.org/dipy/">DIPY</a> under the Python Software Foundation.</p>
+
+<h3 id="so-how-did-i-make-it">So how did I make it?</h3>
+<p>To be frank although I dreamt of getting into GSOC from 10th standard I never tried it whole heartedly before. And it was partly because I did not know how and where to start.
+But this time I was determined and more familiar with different open source projects and I started early getting involved with the community. After trying many organisations I finally found one where I could contribute something, be it tiny code cleanups or small enhancements. And trust me <strong>it feels just amazing when your first <a href="https://github.com/nipy/dipy/pull/1015">patch (pull request)</a> gets merged into the master branch!</strong> Then I selected a project in this organisation, prepared an application and in the whole process my mentors helped me a lot with their valuable suggestions. And after that here I am! :)</p>
+
+<h3 id="project-overview">Project Overview</h3>
+<p>The aim of my project is to develop a new website for Dipy from scratch with a custom content management system and admin functionality for maintenance. Another key feature of the website will be continuous generation of documentation from the dipy repository and linking with the website. This means that whenever a new version of dipy will be released the website will be automatically updated with the new documentation. Some other features include a visualization of web analytics and github data to showcase the fact that the dipy project is spreading worldwide and a tool to generate documentation of command line utilities. 
+The backend of the website will be built using <strong><a href="http://djangoproject.com/">django</a></strong>, and some other python libraries like <a href="https://pypi.python.org/pypi/Markdown">markdown</a> and <a href="https://github.com/omab/python-social-auth">python-social-auth</a>. For visualization I plan to use <a href="http://d3js.org/">D3js</a> library.
+For me the most challenging and interesting part of the project will be continuous generation of documentation. There can be many ways this can be achieved. For now we have thought of a process in which for every commit or release a build server will be triggered which will build the documentation using sphinx and this documentation will then be uploaded to the website. In this process the documentation of the command line utilities will also have to be generated and that is a challenge of its own.</p>
+
+<h3 id="community-bonding-period">Community Bonding Period</h3>
+<p>This part of the Google Summer of Code (April 23, 2016 - May 22, 2016) is called Community Bonding Period and I am discussing and refining the ideas with my mentors. We have weekly meetings and frequent communication through email and gitter. I have also set up my development environment and getting ready to start work.
+Although I have developed several small projects using django for my college and clubs I have never tried anything of this scale. So I am learning about the different challenges of deployment, security and scalability. I am trying to get familiar with the best practices and design patterns of django and learning how to test my code.</p>
+
+<p>Hope to have an amazing summer! :)</p>
+
+  </div>
+
+  <hr>
+
+  <p id="post-meta">Posted with Tags<i class="fa fa-tags"></i>: </p>
+
+  
+  <hr>
+  <!-- DISQUS -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+            this.page.url = "http://ghoshbishakh.disqus.com/blogpost/2016/05/16/google-summer-of-code-with-dipy.html";
+            this.page.identifier = "/blogpost/2016/05/16/google-summer-of-code-with-dipy";
+        };
+        
+        (function() {
+          var d = document, s = d.createElement('script');
+
+          s.src = '//ghoshbishakh.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <!-- DISQUS END -->
+  
+</article>
+
+</div>
+<script src="//assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55274012-1');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Google Summer of Code Progress August 19 —   | Hrishabh Sharma</title>
+<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
+">
+<meta name="keywords" content="personal, gsoc">
+<link rel="canonical" href="//blogpost/2016/08/19/google-summer-of-code-progress-august-19.html">
+<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/../assets/css/main.css">
+
+<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="//" class="logo">Hrishabh Sharma</a>
+<ul class="menu">
+<li class="menu__entry"><a href="//blog">Blog</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-linkedin"></i>
+</a>
+
+</ul>
+</header>
+
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Google Summer of Code Progress August 19</h1>
+    <p class="post-meta"><time datetime="2016-08-19T21:00:14+05:30" itemprop="datePublished">Aug 19, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>So we are at the end of this awesome summer and this post is about the progress in my final weeks of GSOC 2016! And the major addition in this period is the development stats visualization page.</p>
+
+<!--more-->
+
+<h2 id="github-stats-visualization">GitHub stats visualization</h2>
+<p>As we had planned, the new Dipy website needed a page to highlight the growing number of developers and their contributions to the Dipy project. And finally we have achieved that with a <a href="https://github.com/nipy/dipy_web/tree/master/github_visualization">separate django app</a> that creates visualizations with data pulled from GitHub API, and for drawing some neat graphs I have used the <a href="http://www.chartjs.org/">Chart.js</a> library.</p>
+
+<p><img src="http://localhost:4000//assets/dipy14.jpg" alt="dipy github visualization page" /></p>
+
+<hr />
+
+<h2 id="and-hey-its-a-separate-django-app">And hey its a separate django app!</h2>
+<p>So it can be integrated easily into any other django project! Simply copy the github_visualization folder into your project and add <code class="highlighter-rouge">github_visualization</code> to the <code class="highlighter-rouge">INSTALLED_APPS</code> list in settings.py.</p>
+
+<p>Now you just need to add a couple of lines to the template in which you want to show the visualizations.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- load the template tags for github_visualization --&gt;</span>
+{% load github_stats_tags %}
+
+<span class="c">&lt;!-- load css and js --&gt;</span>
+{% include "github_visualization/github_stats_includes.html" %}
+
+<span class="c">&lt;!-- render the visualizations --&gt;</span>
+{% github_stats_block "username" "repository_name" %}</code></pre></figure>
+
+<p>Just change the ‘username’ and ‘repository_name’ to point to the GitHub repository you want to see visualizations for.</p>
+
+<p>The work was submitted throught the pull request <a href="https://github.com/nipy/dipy_web/pull/15">#15</a>.</p>
+
+  </div>
+
+  <hr>
+
+  <p id="post-meta">Posted with Tags<i class="fa fa-tags"></i>: </p>
+
+  
+  <hr>
+  <!-- DISQUS -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+            this.page.url = "http://ghoshbishakh.disqus.com/blogpost/2016/08/19/google-summer-of-code-progress-august-19.html";
+            this.page.identifier = "/blogpost/2016/08/19/google-summer-of-code-progress-august-19";
+        };
+        
+        (function() {
+          var d = document, s = d.createElement('script');
+
+          s.src = '//ghoshbishakh.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <!-- DISQUS END -->
+  
+</article>
+
+</div>
+<script src="//assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

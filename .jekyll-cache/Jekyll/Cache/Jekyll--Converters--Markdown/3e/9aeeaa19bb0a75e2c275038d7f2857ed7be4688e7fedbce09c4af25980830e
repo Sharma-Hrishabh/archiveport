@@ -1,0 +1,49 @@
+I"û
+<p>Till last year whenever I encountered a laptop with WiFi not working in linux it was a <a href="https://wiki.archlinux.org/index.php/Broadcom_wireless#History">Broadcom Wireless Adapter</a>.</p>
+
+<p>But this year things are different.<!--more--> Nearly all new HP laptops are having problems with WiFi in linux (ubuntu, arch, manjaro). And surprisingly the problem is not that the WiFi driver is not working at all. But it is worse, the signal strength received is so weak that it is absolutely unusable.</p>
+
+<p>A quick <code class="highlighter-rouge">lspci | grep Wireless</code> shows the Wireless Adapter in your system. In my case the device causing problem was a Realtek:</p>
+
+<p><strong>RTL8723be</strong></p>
+
+<p>After scanning through numerous threads I finally found the solution in this github issue:</p>
+
+<p><a href="https://github.com/lwfinger/rtlwifi_new/issues/88">https://github.com/lwfinger/rtlwifi_new/issues/88</a></p>
+
+<h2 id="so-here-is-the-step-by-step-procedure-to-solve-the-issue">So here is the step by step procedure to solve the issue:</h2>
+
+<p>First some make sure the dependencies for building the driver are installed:</p>
+
+<p>In Ubuntu:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get <span class="nb">install </span>build-essential git</code></pre></figure>
+
+<p>In Arch:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>pacman <span class="nt">-S</span> git
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> linux-headers</code></pre></figure>
+
+<p>Now clone the <a href="https://github.com/lwfinger/rtlwifi_new">rtlwifi_new</a> repository:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone git@github.com:lwfinger/rtlwifi_new.git</code></pre></figure>
+
+<p>Checkout the branch rock.new_btcoex</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>rtlwifi_new
+git checkout rock.new_btcoex</code></pre></figure>
+
+<p>Now build and install the driver</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">make
+<span class="nb">sudo </span>make <span class="nb">install</span></code></pre></figure>
+
+<p>Reboot the system.</p>
+
+<p>Now disable and enable the driver with proper parameters.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>modprobe <span class="nt">-rv</span> rtl8723be
+<span class="nb">sudo </span>modprobe <span class="nt">-v</span> rtl8723be <span class="nv">ant_sel</span><span class="o">=</span>2</code></pre></figure>
+
+<p>NOTE: If this does not work try: <code class="highlighter-rouge">sudo modprobe -v rtl8723be ant_sel=1</code></p>
+:ET

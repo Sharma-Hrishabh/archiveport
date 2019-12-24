@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55274012-1');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Google Summer of Code Progress August 7 —   | Hrishabh Sharma</title>
+<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
+">
+<meta name="keywords" content="personal, gsoc">
+<link rel="canonical" href="//blogpost/2016/08/07/google-summer-of-code-progress-august-7.html">
+<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/../assets/css/main.css">
+
+<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="//" class="logo">Hrishabh Sharma</a>
+<ul class="menu">
+<li class="menu__entry"><a href="//blog">Blog</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-linkedin"></i>
+</a>
+
+</ul>
+</header>
+
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Google Summer of Code Progress August 7</h1>
+    <p class="post-meta"><time datetime="2016-08-07T01:00:14+05:30" itemprop="datePublished">Aug 7, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Yay! We have dynamically generated gallery and tutorials page now!</p>
+
+<!--more-->
+
+<h3 id="progress-so-far">Progress so far</h3>
+
+<p>The major changes are in the gallery and in the new tutorials page.</p>
+
+<h4 id="gallery-page">Gallery Page</h4>
+
+<p>Instead of showing the manually entered images from the admin panel, the gallery now fetches all images from all the tutorials in the latest documentation.</p>
+
+<p>This is actually done using by scraping the tutorials page from the json docs.</p>
+
+<p>Although the docs are now built in json format but still the body is represented as an HTML string. As a result there was no way out other than parsing the HTML. And the best HTML parsing library that I know of is Beautiful Soup.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_doc_examples_images</span><span class="p">():</span>
+    <span class="s">"""
+    Fetch all images in all examples in latest documentation
+
+    """</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">DocumentationLink</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">displayed</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">version</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'examples_index'</span>
+    <span class="n">repo_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">DOCUMENTATION_REPO_OWNER</span><span class="p">,</span>
+                 <span class="n">settings</span><span class="o">.</span><span class="n">DOCUMENTATION_REPO_NAME</span><span class="p">)</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s">"http://</span><span class="si">%</span><span class="s">s.github.io/</span><span class="si">%</span><span class="s">s/"</span> <span class="o">%</span> <span class="n">repo_info</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s">".fjson"</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s">"/index.fjson"</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">url_dir</span> <span class="o">=</span> <span class="n">url</span>
+    <span class="k">if</span> <span class="n">url_dir</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"/"</span><span class="p">:</span>
+        <span class="n">url_dir</span> <span class="o">+=</span> <span class="s">"/"</span>
+
+    <span class="c1"># parse the content to json
+</span>    <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">bs_doc</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">],</span> <span class="s">'html.parser'</span><span class="p">)</span>
+    <span class="n">all_links</span> <span class="o">=</span> <span class="n">bs_doc</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+
+    <span class="n">examples_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">all_links</span><span class="p">:</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'../examples_built'</span><span class="p">)):</span>
+            <span class="n">rel_url</span> <span class="o">=</span> <span class="s">"/"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)[</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"/"</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">example_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">rel_url</span> <span class="o">+</span> <span class="s">".fjson"</span>
+            <span class="n">example_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">example_url</span><span class="p">)</span>
+            <span class="n">example_json</span> <span class="o">=</span> <span class="n">example_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="n">example_title</span> <span class="o">=</span> <span class="n">strip_tags</span><span class="p">(</span><span class="n">example_json</span><span class="p">[</span><span class="s">'title'</span><span class="p">])</span>
+
+            <span class="c1"># replace relative image links with absolute links
+</span>            <span class="n">example_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">]</span> <span class="o">=</span> <span class="n">example_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                <span class="s">"src=</span><span class="se">\"</span><span class="s">../"</span><span class="p">,</span> <span class="s">"src=</span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">url_dir</span><span class="p">)</span>
+
+            <span class="c1"># extract title and all images
+</span>            <span class="n">example_bs_doc</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">example_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">],</span> <span class="s">'html.parser'</span><span class="p">)</span>
+            <span class="n">example_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">example_title</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'link'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'/documentation/'</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="n">example_bs_doc</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'images'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">example_bs_doc</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'img'</span><span class="p">)):</span>
+                <span class="n">example_dict</span><span class="p">[</span><span class="s">'images'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+            <span class="n">examples_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">example_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">examples_list</span></code></pre></figure>
+
+<p>And all the extracted images are displayed in the honeycomb gallery.</p>
+
+<p><img src="http://localhost:4000//assets/dipy12.jpeg" alt="dipy gallery page" /></p>
+
+<h4 id="tutorials-page">Tutorials Page</h4>
+
+<p>Although each version of documentation has a list of tutorials separately, we wanted a dedicated page which will contain the tutorials with thumbnails and descriptions and they will be grouped into several sections. So similar to the gallery page I parsed the tutorials index page and went into each tutorial and fetched the thumbnails and descriptions. Then this list of tutorials is displayed as an exapandable list of groups.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_examples_list_from_li_tags</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">li_tags</span><span class="p">):</span>
+    <span class="s">"""
+    Fetch example title, description and images from a list of li tags
+    containing links to the examples
+    """</span>
+
+    <span class="n">examples_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">url_dir</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s">".fjson/"</span>
+
+    <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">li_tags</span><span class="p">:</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'../examples_built'</span><span class="p">)):</span>
+            <span class="n">example_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="c1"># get images
+</span>            <span class="n">rel_url</span> <span class="o">=</span> <span class="s">"/"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)[</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"/"</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">example_url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">rel_url</span> <span class="o">+</span> <span class="s">".fjson"</span>
+            <span class="n">example_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">example_url</span><span class="p">)</span>
+            <span class="n">example_json</span> <span class="o">=</span> <span class="n">example_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="n">example_title</span> <span class="o">=</span> <span class="n">strip_tags</span><span class="p">(</span><span class="n">example_json</span><span class="p">[</span><span class="s">'title'</span><span class="p">])</span>
+
+            <span class="c1"># replace relative image links with absolute links
+</span>            <span class="n">example_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">]</span> <span class="o">=</span> <span class="n">example_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                <span class="s">"src=</span><span class="se">\"</span><span class="s">../"</span><span class="p">,</span> <span class="s">"src=</span><span class="se">\"</span><span class="s">"</span> <span class="o">+</span> <span class="n">url_dir</span><span class="p">)</span>
+
+            <span class="c1"># extract title and all images
+</span>            <span class="n">example_bs_doc</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">example_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">],</span> <span class="s">'html.parser'</span><span class="p">)</span>
+            <span class="n">example_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">example_title</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'link'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'/documentation/'</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="n">example_bs_doc</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">example_dict</span><span class="p">[</span><span class="s">'images'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">example_bs_doc</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'img'</span><span class="p">)):</span>
+                <span class="n">example_dict</span><span class="p">[</span><span class="s">'images'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+            <span class="n">examples_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">example_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">examples_list</span>
+
+
+<span class="k">def</span> <span class="nf">get_doc_examples</span><span class="p">():</span>
+    <span class="s">"""
+    Fetch all examples (tutorials) in latest documentation
+
+    """</span>
+    <span class="n">doc_examples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">DocumentationLink</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">displayed</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">version</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'examples_index'</span>
+    <span class="n">repo_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">DOCUMENTATION_REPO_OWNER</span><span class="p">,</span>
+                 <span class="n">settings</span><span class="o">.</span><span class="n">DOCUMENTATION_REPO_NAME</span><span class="p">)</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s">"http://</span><span class="si">%</span><span class="s">s.github.io/</span><span class="si">%</span><span class="s">s/"</span> <span class="o">%</span> <span class="n">repo_info</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s">".fjson"</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">version</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s">"/index.fjson"</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">url_dir</span> <span class="o">=</span> <span class="n">url</span>
+    <span class="k">if</span> <span class="n">url_dir</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"/"</span><span class="p">:</span>
+        <span class="n">url_dir</span> <span class="o">+=</span> <span class="s">"/"</span>
+
+    <span class="c1"># parse the content to json
+</span>    <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">bs_doc</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s">'body'</span><span class="p">],</span> <span class="s">'html.parser'</span><span class="p">)</span>
+
+    <span class="n">examples_div</span> <span class="o">=</span> <span class="n">bs_doc</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">"div"</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">"examples"</span><span class="p">)</span>
+    <span class="n">all_major_sections</span> <span class="o">=</span> <span class="n">examples_div</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"div"</span><span class="p">,</span>
+                                               <span class="n">class_</span><span class="o">=</span><span class="s">"section"</span><span class="p">,</span>
+                                               <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">major_section</span> <span class="ow">in</span> <span class="n">all_major_sections</span><span class="p">:</span>
+        <span class="n">major_section_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">major_section_title</span> <span class="o">=</span> <span class="n">major_section</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">"h2"</span><span class="p">)</span>
+        <span class="n">major_section_dict</span><span class="p">[</span><span class="s">"title"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">major_section_title</span><span class="p">)</span>
+        <span class="n">major_section_dict</span><span class="p">[</span><span class="s">"minor_sections"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">major_section_dict</span><span class="p">[</span><span class="s">"examples_list"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">all_minor_sections</span> <span class="o">=</span> <span class="n">major_section</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"div"</span><span class="p">,</span>
+                                                    <span class="n">class_</span><span class="o">=</span><span class="s">"section"</span><span class="p">,</span>
+                                                    <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_minor_sections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># no minor sections, only examples_list
+</span>            <span class="n">all_li</span> <span class="o">=</span> <span class="n">major_section</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">"ul"</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"li"</span><span class="p">)</span>
+            <span class="n">major_section_dict</span><span class="p">[</span>
+                <span class="s">"examples_list"</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_examples_list_from_li_tags</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span>
+                                                                  <span class="n">version</span><span class="p">,</span>
+                                                                  <span class="n">path</span><span class="p">,</span>
+                                                                  <span class="n">all_li</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">minor_section</span> <span class="ow">in</span> <span class="n">all_minor_sections</span><span class="p">:</span>
+                <span class="n">minor_section_dict</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">minor_section_title</span> <span class="o">=</span> <span class="n">minor_section</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">"h3"</span><span class="p">)</span>
+                <span class="n">minor_section_dict</span><span class="p">[</span><span class="s">"title"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">minor_section_title</span><span class="p">)</span>
+                <span class="n">minor_section_dict</span><span class="p">[</span><span class="s">"examples_list"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="n">all_li</span> <span class="o">=</span> <span class="n">minor_section</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">"ul"</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"li"</span><span class="p">)</span>
+                <span class="n">minor_section_dict</span><span class="p">[</span>
+                    <span class="s">"examples_list"</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_examples_list_from_li_tags</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span>
+                                                                      <span class="n">version</span><span class="p">,</span>
+                                                                      <span class="n">path</span><span class="p">,</span>
+                                                                      <span class="n">all_li</span><span class="p">)</span>
+                <span class="n">major_section_dict</span><span class="p">[</span><span class="s">"minor_sections"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">minor_section_dict</span><span class="p">)</span>
+        <span class="n">doc_examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">major_section_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">doc_examples</span></code></pre></figure>
+
+<p><img src="http://localhost:4000//assets/dipy13.png" alt="dipy tutorials page" /></p>
+
+<h3 id="what-next">What next?</h3>
+
+<p>The github statistics visualizations page is one major task. Another major task is somehow make the automatically generated gallery and tutorials page editable so that we can change the thumbnails or descriptions. Also the coding period is about to end in 2 weeks so documenting the code and merging all pull requests is a priority.</p>
+
+<hr />
+
+  </div>
+
+  <hr>
+
+  <p id="post-meta">Posted with Tags<i class="fa fa-tags"></i>: </p>
+
+  
+  <hr>
+  <!-- DISQUS -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+            this.page.url = "http://ghoshbishakh.disqus.com/blogpost/2016/08/07/google-summer-of-code-progress-august-7.html";
+            this.page.identifier = "/blogpost/2016/08/07/google-summer-of-code-progress-august-7";
+        };
+        
+        (function() {
+          var d = document, s = d.createElement('script');
+
+          s.src = '//ghoshbishakh.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <!-- DISQUS END -->
+  
+</article>
+
+</div>
+<script src="//assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

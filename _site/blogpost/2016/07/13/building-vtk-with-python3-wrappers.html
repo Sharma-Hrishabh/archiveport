@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55274012-1');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Building VTK with Python3 Wrappers —   | Hrishabh Sharma</title>
+<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
+">
+<meta name="keywords" content="guides, linux">
+<link rel="canonical" href="//blogpost/2016/07/13/building-vtk-with-python3-wrappers.html">
+<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/../assets/css/main.css">
+
+<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="//" class="logo">Hrishabh Sharma</a>
+<ul class="menu">
+<li class="menu__entry"><a href="//blog">Blog</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-linkedin"></i>
+</a>
+
+</ul>
+</header>
+
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Building VTK with Python3 Wrappers</h1>
+    <p class="post-meta"><time datetime="2016-07-13T11:40:14+05:30" itemprop="datePublished">Jul 13, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>In my previous <a href="http://ghoshbishakh.github.io/blog/blogpost/2016/03/05/buid-vtk.html">post</a> I tried to give a short guide on how to build VTK with python wrappers. But then I tried to build it for python3 and found that my own guide does not work :P . So here is an updated version of the guide.
+<!--more-->
+I am using Arch Linux. But this should work for most linux distros.</p>
+
+<h2 id="fetch-the-source-code-of-vtk">Fetch the source code of VTK</h2>
+
+<p>We have two options here</p>
+
+<ol>
+  <li>Download the latest release from <a href="http://www.vtk.org/download/">VTK Website</a></li>
+  <li>Clone the git repository from <a href="https://gitlab.kitware.com/vtk/vtk">gitlab</a></li>
+</ol>
+
+<p><strong>We will clone the source from GitLab here</strong></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://gitlab.kitware.com/vtk/vtk.git</code></pre></figure>
+
+<p>This will create a directory named vtk</p>
+
+<h2 id="build-vtk">Build VTK</h2>
+
+<p>We will build the source from a different folder.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">mkdir </span>vtkBuild
+<span class="nb">cd </span>vtkBuild</code></pre></figure>
+
+<p>Now configure cmake properly. This is the most important part.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ccmake ../vtk</code></pre></figure>
+
+<p>We will see a screen like this:</p>
+
+<p><img src="http://localhost:4000//assets/vtk-2-1.png" alt="VTK configure screenshot 1" /></p>
+
+<p>Now press <strong>c</strong> to configure. After configuring several options should appear.</p>
+
+<p>Press <strong>t</strong> to toggle to Advanced mode.</p>
+
+<p><img src="http://localhost:4000//assets/vtk-2-2.png" alt="VTK configure screenshot 2" /></p>
+
+<h3 id="now-change-the-following">Now change the following:</h3>
+
+<p>Toggle BUILD_TESTING on.</p>
+
+<p>Toggle VTK_WRAP_PYTHON on.</p>
+
+<p>Toggle VTK_WRAP_TCL on.</p>
+
+<p>Change CMAKE_INSTALL_PREFIX to /usr</p>
+
+<p>Change VTK_PYTHON_VERSION to 3.5 (your python version)</p>
+
+<p>Change PYTHON_EXECUTABLE to your python executable. For me it was /usr/local/bin/python . You can check it by typing <code class="highlighter-rouge">which python</code> in your terminal.</p>
+
+<p>Change PYTHON_INCLUDE_DIR to the directory where the python libraries are installed. In my case it is /usr/lib/python3.5/</p>
+
+<h3 id="configure-and-build">Configure and Build</h3>
+<p>Press <strong>c</strong> to configure.
+Now press <strong>g</strong> to generate Makefile.</p>
+
+<p>( You may have to press c and g again as it sometimes does not work properly )</p>
+
+<p>Then install VTK and the Wrappers</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">make
+<span class="nb">sudo </span>make <span class="nb">install
+cd </span>Wrappers/Python
+make
+<span class="nb">sudo </span>make <span class="nb">install</span></code></pre></figure>
+
+<p>And that should be it :)</p>
+
+<p>Check your vtk installation:
+Open python and run</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">vtk</span></code></pre></figure>
+
+<p>If that did not raise any error then you should be good to go!</p>
+
+<p>Please leave a comment if you have any issues.</p>
+
+<p>References:
+<a href="http://www.math.univ-paris13.fr/~cuvelier/mainsu35.html">http://www.math.univ-paris13.fr/~cuvelier/mainsu35.html</a></p>
+
+  </div>
+
+  <hr>
+
+  <p id="post-meta">Posted with Tags<i class="fa fa-tags"></i>: </p>
+
+  
+  <hr>
+  <!-- DISQUS -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+            this.page.url = "http://ghoshbishakh.disqus.com/blogpost/2016/07/13/building-vtk-with-python3-wrappers.html";
+            this.page.identifier = "/blogpost/2016/07/13/building-vtk-with-python3-wrappers";
+        };
+        
+        (function() {
+          var d = document, s = d.createElement('script');
+
+          s.src = '//ghoshbishakh.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <!-- DISQUS END -->
+  
+</article>
+
+</div>
+<script src="//assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

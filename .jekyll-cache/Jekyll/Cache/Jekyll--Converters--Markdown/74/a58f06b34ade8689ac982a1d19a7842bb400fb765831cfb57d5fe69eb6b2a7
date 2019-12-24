@@ -1,0 +1,73 @@
+I"ÿ<p>In this post I will give you clear steps that you can follow to get started with <a href="https://hyperledger-fabric.readthedocs.io">Hyperledger Fabric</a> quickly in Ubuntu 18.04.</p>
+
+<!--more-->
+
+<h2 id="install-prerequisites">Install prerequisites</h2>
+<p>First.. we need to install some prerequisites: curl, git, docker, docker-compose, golang, nodejs, npm</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get <span class="nb">install </span>curl
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>git
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>docker
+docker <span class="nt">--version</span>    <span class="c"># just to ckeck if it is installed correctly</span>
+<span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> docker <span class="nv">$USER</span>
+<span class="nb">sudo </span>systemctl start docker
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker
+
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>docker-compose
+docker-compose <span class="nt">--version</span>    <span class="c"># ckeck if it is installed correctly</span>
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>golang
+go version <span class="c"># ckeck if it is installed correctly</span>
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>nodejs
+node <span class="nt">--version</span>
+
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>npm
+npm <span class="nt">--version</span></code></pre></figure>
+
+<p>[NOTE: you need to logout and login back in order to use docker without superuser rights]</p>
+
+<h2 id="install-samples-and-binaries">Install samples and binaries</h2>
+<p>Now for installing fabric samples and binaries, they provide a simple script to make your life easy also make the process obfuscated so that we need to put some extra effort to understand what is going on underneath. Anyways, we just want to set up our first fabric sample asap so just do the following:</p>
+
+<p>[NOTE: this will take time as the size of the docker images are pretty large.]</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="nt">-sSL</span> http://bit.ly/2ysbOFE | bash <span class="nt">-s</span> 1.2.0</code></pre></figure>
+
+<p>This will clone fabric-samples in you present working directory which we are going to use in the upcoming steps.</p>
+
+<h2 id="building-your-first-network">Building Your First Network</h2>
+<p>We will be running the first-network sample.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>fabric-samples/first-network</code></pre></figure>
+
+<p>Now, we need to generate the certs and genesis blocks. Then start the test network.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./byfn.sh generate
+
+./byfn.sh up</code></pre></figure>
+
+<p>You should see the following upon successful execution:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"> ____    _____      _      ____    _____
+/ ___|  |_   _|    / <span class="se">\ </span>   |  _ <span class="se">\ </span> |_   _|
+<span class="se">\_</span>__ <span class="se">\ </span>   | |     / _ <span class="se">\ </span>  | |_<span class="o">)</span> |   | |
+ ___<span class="o">)</span> |   | |    / ___ <span class="se">\ </span> |  _ &lt;    | |
+|____/    |_|   /_/   <span class="se">\_\ </span>|_| <span class="se">\_\ </span>  |_|
+<span class="nb">.</span>
+<span class="nb">.</span>
+<span class="nb">.</span>
+ _____   _   _   ____
+| ____| | <span class="se">\ </span>| | |  _ <span class="se">\</span>
+|  _|   |  <span class="se">\|</span> | | | | |
+| |___  | |<span class="se">\ </span> | | |_| |
+|_____| |_| <span class="se">\_</span>| |____/</code></pre></figure>
+
+<p>Now bring down the network:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./byfn.sh down</code></pre></figure>
+
+:ET

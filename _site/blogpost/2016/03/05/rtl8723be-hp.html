@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55274012-1');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Making rtl8723be Wireless Adapter Work In Linux —   | Hrishabh Sharma</title>
+<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
+">
+<meta name="keywords" content="guides, linux">
+<link rel="canonical" href="//blogpost/2016/03/05/rtl8723be-hp.html">
+<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/../assets/css/main.css">
+
+<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="//" class="logo">Hrishabh Sharma</a>
+<ul class="menu">
+<li class="menu__entry"><a href="//blog">Blog</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-linkedin"></i>
+</a>
+
+</ul>
+</header>
+
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Making rtl8723be Wireless Adapter Work In Linux</h1>
+    <p class="post-meta"><time datetime="2016-03-05T20:00:00+05:30" itemprop="datePublished">Mar 5, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Till last year whenever I encountered a laptop with WiFi not working in linux it was a <a href="https://wiki.archlinux.org/index.php/Broadcom_wireless#History">Broadcom Wireless Adapter</a>.</p>
+
+<p>But this year things are different.<!--more--> Nearly all new HP laptops are having problems with WiFi in linux (ubuntu, arch, manjaro). And surprisingly the problem is not that the WiFi driver is not working at all. But it is worse, the signal strength received is so weak that it is absolutely unusable.</p>
+
+<p>A quick <code class="highlighter-rouge">lspci | grep Wireless</code> shows the Wireless Adapter in your system. In my case the device causing problem was a Realtek:</p>
+
+<p><strong>RTL8723be</strong></p>
+
+<p>After scanning through numerous threads I finally found the solution in this github issue:</p>
+
+<p><a href="https://github.com/lwfinger/rtlwifi_new/issues/88">https://github.com/lwfinger/rtlwifi_new/issues/88</a></p>
+
+<h2 id="so-here-is-the-step-by-step-procedure-to-solve-the-issue">So here is the step by step procedure to solve the issue:</h2>
+
+<p>First some make sure the dependencies for building the driver are installed:</p>
+
+<p>In Ubuntu:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get <span class="nb">install </span>build-essential git</code></pre></figure>
+
+<p>In Arch:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>pacman <span class="nt">-S</span> git
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> linux-headers</code></pre></figure>
+
+<p>Now clone the <a href="https://github.com/lwfinger/rtlwifi_new">rtlwifi_new</a> repository:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone git@github.com:lwfinger/rtlwifi_new.git</code></pre></figure>
+
+<p>Checkout the branch rock.new_btcoex</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>rtlwifi_new
+git checkout rock.new_btcoex</code></pre></figure>
+
+<p>Now build and install the driver</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">make
+<span class="nb">sudo </span>make <span class="nb">install</span></code></pre></figure>
+
+<p>Reboot the system.</p>
+
+<p>Now disable and enable the driver with proper parameters.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>modprobe <span class="nt">-rv</span> rtl8723be
+<span class="nb">sudo </span>modprobe <span class="nt">-v</span> rtl8723be <span class="nv">ant_sel</span><span class="o">=</span>2</code></pre></figure>
+
+<p>NOTE: If this does not work try: <code class="highlighter-rouge">sudo modprobe -v rtl8723be ant_sel=1</code></p>
+
+  </div>
+
+  <hr>
+
+  <p id="post-meta">Posted with Tags<i class="fa fa-tags"></i>: </p>
+
+  
+  <hr>
+  <!-- DISQUS -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+            this.page.url = "http://ghoshbishakh.disqus.com/blogpost/2016/03/05/rtl8723be-hp.html";
+            this.page.identifier = "/blogpost/2016/03/05/rtl8723be-hp";
+        };
+        
+        (function() {
+          var d = document, s = d.createElement('script');
+
+          s.src = '//ghoshbishakh.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <!-- DISQUS END -->
+  
+</article>
+
+</div>
+<script src="//assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

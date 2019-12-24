@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55274012-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55274012-1');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Building VTK with python bindings in linux (arch) —   | Hrishabh Sharma</title>
+<meta name="description" content="Bishakh Ghosh programmer, researcher, developer
+">
+<meta name="keywords" content="guides, linux">
+<link rel="canonical" href="//blogpost/2016/03/05/buid-vtk.html">
+<link rel="icon" type="image/jpeg" href="//assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/../assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/../assets/css/main.css">
+
+<link rel="stylesheet" href="//assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/../assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="//" class="logo">Hrishabh Sharma</a>
+<ul class="menu">
+<li class="menu__entry"><a href="//blog">Blog</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:ghoshbishakh@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+<a href="https://in.linkedin.com/in/ghoshbishakh" class="social-links__entry" target="_blank">
+<i class="fa fa-linkedin"></i>
+</a>
+
+</ul>
+</header>
+
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Building VTK with python bindings in linux (arch)</h1>
+    <p class="post-meta"><time datetime="2016-03-05T13:48:00+05:30" itemprop="datePublished">Mar 5, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I came across <a href="http://www.vtk.org/">VTK</a> while building the docs for <a href="http://nipy.org/dipy/">DIPY</a> and what I needed was the python bindings.<!--more--></p>
+
+<p>I use arch linux so installing from pacman is simple:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>pacman <span class="nt">-S</span> vtk</code></pre></figure>
+
+<p>But this fails to install the python bindings properly and when you try:</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">vtk</span></code></pre></figure>
+<p>it throws the error:</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="n">vtkCommonPython</span></code></pre></figure>
+
+<p>That leaves no other way except to build VTK from source including the python wrapper, for the python version you want to use vtk in.</p>
+
+<h2 id="so-here-is-the-step-by-step-procedure">So here is the step by step procedure:</h2>
+
+<p>From <a href="http://www.vtk.org/">vtk website</a> download the latest source tarball. For me it is VTK-7.0.0.tar.gz then extract it:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">tar</span> <span class="nt">-xzvf</span> VTK-7.0.0.tar.gz <span class="nb">cd </span>VTK-7.0.0</code></pre></figure>
+
+<p>Now configure cmake properly for building python wrappers:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">cmake <span class="nb">.</span>
+ccmake .</code></pre></figure>
+<p>This will give you an interface like: <img src="http://localhost:4000//assets/vtk-screenshot.jpg" alt="vtk configure screenshot" />
+Now use your arrow keys to select the option you want to change and press enter to change value.</p>
+
+<p>Toggle VTK_WRAP_PYTHON on.</p>
+
+<p>Toggle VTK_WRAP_TCL on.</p>
+
+<p>Change CMAKE_INSTALL_PREFIX to /usr</p>
+
+<p>Change VTK_PYTHON_VERSION to 2.7 (or the version of python you want to use vtk in)</p>
+
+<p>Now press [c] to configure</p>
+
+<p>Then press [g] to generate and exit</p>
+
+<p>Note: Sometimes you need to press c and g again.</p>
+
+<p>Now run:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">make
+<span class="nb">sudo </span>make <span class="nb">install</span></code></pre></figure>
+
+<p>This will create a directory: Wrapping/Python</p>
+
+<p>Now install the python bindings:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>Wrapping/Python
+make
+<span class="nb">sudo </span>make <span class="nb">install</span></code></pre></figure>
+
+<p>Hopefully that should install vtk properly.</p>
+
+<p>To check, in python run:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">import vtk
+vtk.__file__</code></pre></figure>
+
+<p>This should give something like:</p>
+
+<p>‘/usr/lib/python2.7/site-packages/vtk/<strong>init</strong>.pyc’</p>
+
+  </div>
+
+  <hr>
+
+  <p id="post-meta">Posted with Tags<i class="fa fa-tags"></i>: </p>
+
+  
+  <hr>
+  <!-- DISQUS -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+            this.page.url = "http://ghoshbishakh.disqus.com/blogpost/2016/03/05/buid-vtk.html";
+            this.page.identifier = "/blogpost/2016/03/05/buid-vtk";
+        };
+        
+        (function() {
+          var d = document, s = d.createElement('script');
+
+          s.src = '//ghoshbishakh.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <!-- DISQUS END -->
+  
+</article>
+
+</div>
+<script src="//assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

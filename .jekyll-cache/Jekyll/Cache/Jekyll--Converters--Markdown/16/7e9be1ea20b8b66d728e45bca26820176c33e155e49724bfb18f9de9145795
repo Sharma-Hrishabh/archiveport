@@ -1,0 +1,84 @@
+I"—<p>In my previous <a href="http://ghoshbishakh.github.io/blog/blogpost/2016/03/05/buid-vtk.html">post</a> I tried to give a short guide on how to build VTK with python wrappers. But then I tried to build it for python3 and found that my own guide does not work :P . So here is an updated version of the guide.
+<!--more-->
+I am using Arch Linux. But this should work for most linux distros.</p>
+
+<h2 id="fetch-the-source-code-of-vtk">Fetch the source code of VTK</h2>
+
+<p>We have two options here</p>
+
+<ol>
+  <li>Download the latest release from <a href="http://www.vtk.org/download/">VTK Website</a></li>
+  <li>Clone the git repository from <a href="https://gitlab.kitware.com/vtk/vtk">gitlab</a></li>
+</ol>
+
+<p><strong>We will clone the source from GitLab here</strong></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://gitlab.kitware.com/vtk/vtk.git</code></pre></figure>
+
+<p>This will create a directory named vtk</p>
+
+<h2 id="build-vtk">Build VTK</h2>
+
+<p>We will build the source from a different folder.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">mkdir </span>vtkBuild
+<span class="nb">cd </span>vtkBuild</code></pre></figure>
+
+<p>Now configure cmake properly. This is the most important part.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ccmake ../vtk</code></pre></figure>
+
+<p>We will see a screen like this:</p>
+
+<p><img src="http://localhost:4000//assets/vtk-2-1.png" alt="VTK configure screenshot 1" /></p>
+
+<p>Now press <strong>c</strong> to configure. After configuring several options should appear.</p>
+
+<p>Press <strong>t</strong> to toggle to Advanced mode.</p>
+
+<p><img src="http://localhost:4000//assets/vtk-2-2.png" alt="VTK configure screenshot 2" /></p>
+
+<h3 id="now-change-the-following">Now change the following:</h3>
+
+<p>Toggle BUILD_TESTING on.</p>
+
+<p>Toggle VTK_WRAP_PYTHON on.</p>
+
+<p>Toggle VTK_WRAP_TCL on.</p>
+
+<p>Change CMAKE_INSTALL_PREFIX to /usr</p>
+
+<p>Change VTK_PYTHON_VERSION to 3.5 (your python version)</p>
+
+<p>Change PYTHON_EXECUTABLE to your python executable. For me it was /usr/local/bin/python . You can check it by typing <code class="highlighter-rouge">which python</code> in your terminal.</p>
+
+<p>Change PYTHON_INCLUDE_DIR to the directory where the python libraries are installed. In my case it is /usr/lib/python3.5/</p>
+
+<h3 id="configure-and-build">Configure and Build</h3>
+<p>Press <strong>c</strong> to configure.
+Now press <strong>g</strong> to generate Makefile.</p>
+
+<p>( You may have to press c and g again as it sometimes does not work properly )</p>
+
+<p>Then install VTK and the Wrappers</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">make
+<span class="nb">sudo </span>make <span class="nb">install
+cd </span>Wrappers/Python
+make
+<span class="nb">sudo </span>make <span class="nb">install</span></code></pre></figure>
+
+<p>And that should be it :)</p>
+
+<p>Check your vtk installation:
+Open python and run</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">vtk</span></code></pre></figure>
+
+<p>If that did not raise any error then you should be good to go!</p>
+
+<p>Please leave a comment if you have any issues.</p>
+
+<p>References:
+<a href="http://www.math.univ-paris13.fr/~cuvelier/mainsu35.html">http://www.math.univ-paris13.fr/~cuvelier/mainsu35.html</a></p>
+:ET
