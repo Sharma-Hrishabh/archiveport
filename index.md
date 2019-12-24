@@ -29,16 +29,18 @@ Saiyyid Hamid Senior Secondary School <span style="float: right; ">93.8%</span>
 
 <hr>
 
+
 **Secondary School** <span style="float: right; ">2015-2015</span>  
 
 A.M.U City High School <span style="float: right; ">89.00%</span>
 
 <hr>
+<br>
 
 
 ### EXPERIENCE
-**Summer Research Internship** -  <span style="float: right; ">IIT Kharagpur</span>
-Computer Science & Engineering Department (Summer 2019)
+**Summer Research Internship** -  <span style="float: right; ">May 2019- July 2019</span>
+Computer Science & Engineering Department-IIT Kharagpur<br>
 Topic: Blockchain Technology
 <hr>
 

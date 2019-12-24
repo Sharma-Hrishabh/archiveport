@@ -1,16 +1,16 @@
 # Site settings
 title: Hrishabh Sharma
 description: >
-  Bishakh Ghosh programmer, researcher, developer
+  Hrishabh Sharma programmer, developer
 
 baseurl: "/" # the subpath of your site, e.g. /blog/
-url: "https://ghoshbishakh.github.io" # the base hostname & protocol for your site
+url: "https://Sharma-Hrishabh.github.io" # the base hostname & protocol for your site
 
 author:
-  fullname: Bishakh Ghosh
-  github: ghoshbishakh
-  linkedin: ghoshbishakh
-  email: ghoshbishakh@gmail.com
+  fullname: Hrishabh Sharma
+  github: Sharma-Hrishabh
+  linkedin: hrishabh-sharma-122338163
+  email: hrishabh01sharma@gmail.com
 
 
 # Syntax highlighting
