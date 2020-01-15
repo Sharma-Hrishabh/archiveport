@@ -6,7 +6,7 @@ sitemap:
   priority: 0.9
 ---
 
-<img src="http://www.cevgroup.org/wp-content/uploads/2019/04/Webp.net-resizeimage.png" id="about-img">
+<img src="https://github.com/Sharma-Hrishabh/Sharma-Hrishabh.github.io/blob/master/assets/hrishabh.png" id="about-img">
 
 <div id="describe-text">
     <p>Area of Interest- Distributed Ledger Technologies & Web Technologies</p>
