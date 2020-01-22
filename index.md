@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Hrishabh Sharma
-subtitle: NIT Surat
+title: Hey, I'm Hrishabh
+subtitle: a Junior Undergrad Student at NIT Surat
 sitemap:
   priority: 0.9
 ---
