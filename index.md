@@ -69,7 +69,6 @@ Topic: Blockchain Technology
 - Instructor of Blockchain Course in Winter School 2019 at NIT Surat organized by CEV.
 - 2nd Runner Up in WRC Global Blockchain Hackathon hosted by World Bank: Water 
 - Winner of Rajasthan Online Hackathon-2018 organized by DoIT&C and Gov. Of Rajasthan
-- Spot Award winner at MAQ Software for good performance and fast delivery
 - Second Rank in Senior Secondary Examination, Aligarh Muslim University Board with 93.8 %
 - IBM Blockchain Essentials Badge Holder issued by IBM <a href="https://www.youracclaim.com/badges/29223042-1da6-41ab-9098-face7b39f2cb/public_url">(Link)</a>
 
