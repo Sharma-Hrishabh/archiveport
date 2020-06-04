@@ -64,10 +64,11 @@ Topic: Blockchain Technology
 - **Blockchain Tech-Stack**- Solidity, Ethereum-Dev, Hyperledger Fabric, Web3 JS, IPFS.
 <hr>
 - **Other Tools & Libs**- Qt, Linux 
+<hr>
 <br>
 
 ### OPENSOURCE
-**OpenSCAD**: A constant contributor to OpenSCAD Software. Have worked on improving their text editor and parser enhancements.
+**OpenSCAD**: A regular contributor to OpenSCAD Software. Have worked on text editor improvements and parser enhancements.
 
 <br>
 
