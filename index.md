@@ -38,8 +38,8 @@ A.M.U City High School <span style="float: right; ">89.00%</span>
 
 
 ### EXPERIENCE
-**Student Developer** -  <span style="float: right; ">May 2020- Present</span>
-Google Summer of Code 2020 <br>
+**Google Summer Of Code 2020** -  <span style="float: right; ">May 2020- Present</span>
+Student Developer <br>
 <hr>
 
 **Summer Research Internship** -  <span style="float: right; ">May 2019- July 2019</span>
@@ -57,12 +57,13 @@ Topic: Blockchain Technology
 
 
 ### SKILLS
-- **Language Proficiency**- C++, JS, Python, Golang, Bash
+- **Language Proficiency**- C++, JS, Python, Golang, Bash.
 <hr>
-- **Web Tech-Stack**- Django, Flask, Angular, Docker, Firebase, GCP
+- **Web Tech-Stack**- Django, Flask, Angular, Docker, Firebase, GCP, SQL.
 <hr>
-- **Blockchain Tech-Stack**- Solidity, Ethereum-Dev, Hyperledger Fabric, Web3 JS
+- **Blockchain Tech-Stack**- Solidity, Ethereum-Dev, Hyperledger Fabric, Web3 JS, IPFS.
 <hr>
+- **Other Tools & Libs**- Qt, Linux 
 <br>
 
 ### OPENSOURCE
