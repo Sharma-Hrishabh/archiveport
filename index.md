@@ -9,7 +9,8 @@ sitemap:
 <img src="{{ '/assets/img/dp.jpg' | prepend: site.baseurl }}" id="about-img">
 
 <div id="describe-text">
-    <p>Area of Interest- Distributed Ledger Technologies & Web Technologies</p>
+    <p> A passionate Developer & Open Source Contributor 🚀 having an experience of building Web and Desktop applications with JavaScript / Python / Django / Node JS / C++ and some other cool libraries and frameworks.</p>
+    <p> Area of Interest : DLTs & Web Technolgies </p>
 </div>
 
 <span style="float: right; "><a href="{{ '/assets/resume.pdf' | prepend: site.baseurl }}"><strong>> Download as PDF</strong></a> </span>
@@ -17,12 +18,11 @@ sitemap:
 
 ### EDUCATION
 
-**National Institute of Technology Surat** <span style="float: right; ">2017 - Present</span>  
+**B.Technology Department of Computer Engineering** <span style="float: right; ">2017 - Present</span>  
 
-B.Technology 
-Department of Computer Engineering
+National Institute of Technology, Surat <span style="float: right; ">9.03/10.0</span>
+
 <hr>
-
  
 **Senior Secondary School** <span style="float: right; ">2016-2017</span>  
 Saiyyid Hamid Senior Secondary School <span style="float: right; ">93.8%</span>
@@ -39,6 +39,10 @@ A.M.U City High School <span style="float: right; ">89.00%</span>
 
 
 ### EXPERIENCE
+**Student Developer** -  <span style="float: right; ">May 2020- Present</span>
+Google Summer of Code 2020 <br>
+<hr>
+
 **Summer Research Internship** -  <span style="float: right; ">May 2019- July 2019</span>
 Computer Science & Engineering Department-IIT Kharagpur<br>
 Topic: Blockchain Technology
@@ -55,14 +59,22 @@ Topic: Blockchain Technology
 <br>
 
 ### PROJECTS
-**CloudChain** - A decentralised cloud federation solution using Blockchain  <span style="float: right; ">May 2019-July 2019</span>  
+**TLR** - TLR enables the users to report crime anonymously on the spot. Based on the voting procedure and helpfulness of the report, the reporter is incentivised in the form of TLR Tokens automatically through Smart Contracts.
 
-**WaterWizard** -a blockchain-based solution for motivating industries for water recycling using AI & IoT / made during WRC Global Blockchain Hackathon<span style="float: right; ">Jan 2019-Feb 2019</span> 
+**CloudChain** - A decentralised cloud federation solution using Blockchain. The infrastructure is based on Hyperledger Fabic.  <span style="float: right; ">May 2019-July 2019</span>  
+
+**WaterWizard** -a blockchain-based solution for motivating industries for water recycling using AI & IoT / made during WRC Global Blockchain Hackathon <span style="float: right; ">Jan 2019-Feb 2019</span> 
 
 **dEmergency** -a decentralized SOS triggering service for medical emergencies<span style="float: right; ">Feb 2019</span> 
 
 **dCoders** -a decentralized coding platform<span style="float: right; ">Jan 2019</span> 
 
+**Blog_Dom** - a blog management folio written structured on Django.
+
+**EBSB** - a Website for 'Ek Bharat Shreshtha Bharat: Gujarat & Chattisgarh', built on Django.
+
+
+<br>
 
 ### ACHIEVEMENTS
 
