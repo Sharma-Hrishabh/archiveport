@@ -9,7 +9,7 @@ sitemap:
 <img src="{{ '/assets/img/dp.jpg' | prepend: site.baseurl }}" id="about-img">
 
 <div id="describe-text">
-    <p> A passionate Developer & Open Source Contributor 🚀 having an experience of building Web and Desktop applications  with a newly growing interest in BLockchain Technology</p>
+    <p> A passionate Developer & Open Source Contributor 🚀 having an experience of building Web and Desktop applications  with a newly growing interest in Blockchain Technology</p>
 </div>
 
 <span style="float: right; "><a href="{{ '/assets/resume.pdf' | prepend: site.baseurl }}"><strong>> Download as PDF</strong></a> </span>
