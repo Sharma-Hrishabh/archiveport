@@ -53,8 +53,16 @@ Topic: Blockchain Technology
 **Github Campus Expert** - invloved in all the technical events in the college campus <span style="float: right; ">December 2019 - Present</span>
 
 <hr>
+<br>
 
 
+### SKILLS
+- **Language Proficiency**- C++, JS, Python, Golang, Bash
+<hr>
+- **Web Tech-Stack**- Django, Flask, Angular, Docker, Firebase, GCP
+<hr>
+- **Blockchain Tech-Stack**- Solidity, Ethereum-Dev, Hyperledger Fabric, Web3 JS
+<hr>
 <br>
 
 ### OPENSOURCE
@@ -88,13 +96,15 @@ Topic: Blockchain Technology
 - **Blockchain-The Internet’s New Magnum Opus** - At NIT Surat.
 <hr>
 
+<br>
+
 ### ACHIEVEMENTS
 
-- Invitation Letter for Undergrad Summer Research Visitor-2020 at Institute of Applied Computer Science &  Formal Description Methods, KIT, Germany [Pass Over due to Pandemic]
+- Invitation Letter for Summer Research Intern-2020 at KIT, Germany. [Pass Over due to Pandemic]
 <hr>
 - Instructor of Blockchain Course in Winter School 2019 at NIT Surat organized by CEV.
 <hr>
-- 2nd Runner Up in WRC Global Blockchain Hackathon hosted by World Bank: Water 
+- 2nd Runner Up in WRC Global Blockchain Hackathon hosted by World Bank: Water. 
 <hr>
 - Winner of Rajasthan Online Hackathon-2018 organized by DoIT&C and Gov. Of Rajasthan
 <hr>
@@ -103,6 +113,7 @@ Topic: Blockchain Technology
 - IBM Blockchain Essentials Badge Holder issued by IBM <a href="https://www.youracclaim.com/badges/29223042-1da6-41ab-9098-face7b39f2cb/public_url">(Link)</a>
 <hr>
 
+<br>
 ### BLOGS
 - Squashing the Key Concepts related to Hyperledger Fabric-<a href="https://medium.com/@hrishabh01sharma/squashing-the-key-concepts-related-to-hyperledger-fabric-d3c1988da197">Link</a>
 <hr>
@@ -116,3 +127,10 @@ Topic: Blockchain Technology
 <hr>
 - The Byzantine Fault Tolerance-<a href="https://medium.com/@hrishabh01sharma/the-byzantine-fault-tolerance-d95845cbfccf">Link</a>
 <hr>
+
+Vist my more blogs at Medium - <a href="https://medium.com/@hrishabh01sharma">@hrishabh01sharma</a>
+<br>
+
+Reach Out to me!
+DISCUSS A PROJECT OR JUST WANT TO SAY HI? MY <a href="hrishabh01sharma@gmail.com">INBOX</a> IS OPEN FOR ALL.
+
