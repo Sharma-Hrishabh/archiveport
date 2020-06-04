@@ -9,8 +9,7 @@ sitemap:
 <img src="{{ '/assets/img/dp.jpg' | prepend: site.baseurl }}" id="about-img">
 
 <div id="describe-text">
-    <p> A passionate Developer & Open Source Contributor 🚀 having an experience of building Web and Desktop applications with JavaScript / Python / Django / Node JS / C++ and some other cool libraries and frameworks.</p>
-    <p> Area of Interest : DLTs & Web Technolgies </p>
+    <p> A passionate Developer & Open Source Contributor 🚀 having an experience of building Web and Desktop applications  with a newly growing interest in BLockchain Technology</p>
 </div>
 
 <span style="float: right; "><a href="{{ '/assets/resume.pdf' | prepend: site.baseurl }}"><strong>> Download as PDF</strong></a> </span>
@@ -58,6 +57,10 @@ Topic: Blockchain Technology
 
 <br>
 
+### OPENSOURCE
+**OpenSCAD**: A constant contributor to OpenSCAD Software. Have worked on improving their text editor and parser enhancements.
+
+
 ### PROJECTS
 **TLR** - TLR enables the users to report crime anonymously on the spot. Based on the voting procedure and helpfulness of the report, the reporter is incentivised in the form of TLR Tokens automatically through Smart Contracts.
 
@@ -69,12 +72,18 @@ Topic: Blockchain Technology
 
 **dCoders** -a decentralized coding platform<span style="float: right; ">Jan 2019</span> 
 
-**Blog_Dom** - a blog management folio written structured on Django.
+**Blog_Dom** - a blog management folio built on Django.
 
-**EBSB** - a Website for 'Ek Bharat Shreshtha Bharat: Gujarat & Chattisgarh', built on Django.
+**EBSB** - a Website for 'Ek Bharat Shreshtha Bharat' managed by Gujarat & Chattisgarh Government, built on Django.
 
 
 <br>
+
+### TALKS
+- **Managing Projects using Git & GitHub** - At HexaHive 2.0, Parul University, Vadodara, Gujarat.
+- **Blockchain Talk Series** - Instructor of Blockchain Course in CEV Winter School at NIT Surat.
+- **Blockchain-The Internet’s New Magnum Opus** - At NIT Surat.
+
 
 ### ACHIEVEMENTS
 
@@ -84,3 +93,11 @@ Topic: Blockchain Technology
 - Second Rank in Senior Secondary Examination, Aligarh Muslim University Board with 93.8 %
 - IBM Blockchain Essentials Badge Holder issued by IBM <a href="https://www.youracclaim.com/badges/29223042-1da6-41ab-9098-face7b39f2cb/public_url">(Link)</a>
 
+
+### BLOGS
+- Squashing the Key Concepts related to Hyperledger Fabric-<a href="https://medium.com/@hrishabh01sharma/squashing-the-key-concepts-related-to-hyperledger-fabric-d3c1988da197">Link</a>
+- Hyperledger Fabric v2.1: Setting Things Up-<a href="https://medium.com/@hrishabh01sharma/hyperledger-fabric-v2-1-setting-things-up-76e9f53f264f">Link</a>
+- Getting Familiar with Some Cool Git Commands- git bisect & git blame-<a href="https://medium.com/@hrishabh01sharma/getting-familiar-with-some-cool-git-commands-git-bisect-git-blame-1300deda4d7c">Link</a>
+- Hashgraph-a better DLT?-<a href="https://medium.com/@hrishabh01sharma/hashgraph-a-better-dlt-6e2e9d920bc9">Link</a>
+- Proof of Work(PoW)-<a href="https://medium.com/@hrishabh01sharma/proof-of-work-pow-f98b4084e374">Link</a>
+- The Byzantine Fault Tolerance-<a href="https://medium.com/@hrishabh01sharma/the-byzantine-fault-tolerance-d95845cbfccf">Link</a>
