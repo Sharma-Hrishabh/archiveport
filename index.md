@@ -17,7 +17,7 @@ sitemap:
 
 ### EDUCATION
 
-**B.Technology Department of Computer Engineering** <span style="float: right; ">2017 - Present</span>  
+**B.Technology in Computer Engineering** <span style="float: right; ">2017 - Present</span>  
 
 National Institute of Technology, Surat <span style="float: right; ">9.03/10.0</span>
 
